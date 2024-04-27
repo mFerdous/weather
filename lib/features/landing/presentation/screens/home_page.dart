@@ -285,6 +285,7 @@ class HomePageState extends State<HomePage>
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      SizedBox(width: 8.sp),
                       Image.asset(
                         'assets/images/sun_fog.png',
                       ),
@@ -300,7 +301,7 @@ class HomePageState extends State<HomePage>
                             style: GoogleFonts.inter(
                               color: Colors.white, // Change the color as needed
                               fontWeight: FontWeight.normal,
-                              fontSize: 15.sp,
+                              fontSize: 12.sp,
                             ),
                           ),
                           Text(
@@ -323,7 +324,7 @@ class HomePageState extends State<HomePage>
                             style: GoogleFonts.inter(
                               color: Colors.white, // Change the color as needed
                               fontWeight: FontWeight.normal,
-                              fontSize: 15.sp,
+                              fontSize: 12.sp,
                             ),
                           ),
                           Text(
@@ -351,7 +352,65 @@ class HomePageState extends State<HomePage>
                     borderRadius: BorderRadius.all(Radius.circular(16)),
                     color: Color.fromRGBO(255, 255, 255, 0.2),
                   ),
-                  child: const Text(' '),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(width: 8.sp),
+                      Image.asset(
+                        'assets/images/sun.png',
+                      ),
+                      SizedBox(
+                          width:
+                              8.sp), // Adjust the spacing between icon and text
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'UV Index',
+                            style: GoogleFonts.inter(
+                              color: Colors.white, // Change the color as needed
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12.sp,
+                            ),
+                          ),
+                          Text(
+                            '${forecast.forecastday![0].day!.uv!.toInt()} '
+                            '${_getUVDescription(forecast.forecastday![0].day!.uv!.toInt())}',
+                            style: GoogleFonts.inter(
+                              color: Colors.white,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 15.sp,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Spacer(), // Adjust the spacing between icon and text
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '',
+                            style: GoogleFonts.inter(
+                              color: Colors.white, // Change the color as needed
+                              fontWeight: FontWeight.normal,
+                              fontSize: 15.sp,
+                            ),
+                          ),
+                          Text(
+                            '',
+                            style: GoogleFonts.inter(
+                              color: Colors.white, // Change the color as needed
+                              fontWeight: FontWeight.normal,
+                              fontSize: 15.sp,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
                 ),
               )
             ],
@@ -359,5 +418,19 @@ class HomePageState extends State<HomePage>
         ],
       ),
     );
+  }
+
+  String _getUVDescription(int uvIndex) {
+    if (uvIndex <= 2) {
+      return "Low";
+    } else if (uvIndex <= 5) {
+      return "Moderate";
+    } else if (uvIndex <= 7) {
+      return "High";
+    } else if (uvIndex <= 10) {
+      return "Very High";
+    } else {
+      return "Extreme";
+    }
   }
 }
