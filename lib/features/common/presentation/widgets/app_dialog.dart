@@ -33,10 +33,10 @@ class AppDialog extends StatelessWidget {
   final bool isNoInternet;
 
   const AppDialog({
-    Key? key,
+    super.key,
     required this.title,
     required this.isNoInternet,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

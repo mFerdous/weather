@@ -1,4 +1,3 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
 import 'package:get_it/get_it.dart';
@@ -10,6 +9,7 @@ import '../../features/common/domain/usecase/locale_usecase.dart';
 import '../../features/common/presentation/cubit/locale/locale_cubit.dart';
 import '../../features/common/data/data_source/local/locale_source.dart';
 import '../../features/common/data/data_source/local/token_source.dart';
+import '../../features/landing/presentation/cubit/logic_cubit/logical_cubit.dart';
 import '../header_provider/header_provider.dart';
 
 import '../network/connection_checker.dart';
@@ -41,15 +41,15 @@ class Dependency {
     sl.registerLazySingleton<HeaderProvider>(() => HeaderProviderImpl());
     sl.registerLazySingleton(() => AuthHeaderProvider(sl()));
 
-
-
-
+    sl.registerLazySingleton(() => LogicalCubit());
   }
-
 
   static final providers = <BlocProvider>[
     BlocProvider<LocaleCubit>(
       create: (context) => Dependency.sl<LocaleCubit>(),
+    ),
+    BlocProvider<LogicalCubit>(
+      create: (context) => Dependency.sl<LogicalCubit>(),
     ),
   ];
 }

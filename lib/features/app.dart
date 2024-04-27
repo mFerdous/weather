@@ -1,4 +1,5 @@
 import 'package:oktoast/oktoast.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../core/resources/string_res.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ import '../core/utils/lang/app_localizations.dart';
 import 'common/presentation/cubit/locale/locale_cubit.dart';
 
 class App extends StatefulWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   @override
   State<App> createState() => _AppState();
@@ -20,6 +21,16 @@ class App extends StatefulWidget {
 final routeConfig = RouteConfig();
 
 class _AppState extends State<App> {
+  @override
+  void initState() {
+    super.initState();
+    requestPermissions();
+  }
+
+  Future<void> requestPermissions() async {
+   await Permission.location.request();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(

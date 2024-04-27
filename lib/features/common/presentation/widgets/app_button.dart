@@ -11,13 +11,13 @@ class AppButton extends StatelessWidget {
   final Color? color;
 
   const AppButton({
-    Key? key,
+    super.key,
     required this.title,
     this.onTap,
     this.padding,
     this.isDisabled = false,
     this.color,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

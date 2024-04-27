@@ -14,13 +14,13 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final bool isActionButton;
   final String? previousRouteName;
   const AppBarWidget({
-    Key? key,
+    super.key,
     required this.title,
     this.subtitle = '',
     this.isBackButton = false,
     this.isActionButton = false,
     this.previousRouteName,
-  }) : super(key: key);
+  });
 
   @override
   Size get preferredSize => const Size.fromHeight(60);
