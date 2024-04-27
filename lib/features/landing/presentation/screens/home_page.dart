@@ -282,7 +282,63 @@ class HomePageState extends State<HomePage>
                     borderRadius: BorderRadius.all(Radius.circular(16)),
                     color: Color.fromRGBO(255, 255, 255, 0.2),
                   ),
-                  child: const Text(' '),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/images/sun_fog.png',
+                      ),
+                      SizedBox(
+                          width:
+                              8.sp), // Adjust the spacing between icon and text
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Sunrise',
+                            style: GoogleFonts.inter(
+                              color: Colors.white, // Change the color as needed
+                              fontWeight: FontWeight.normal,
+                              fontSize: 15.sp,
+                            ),
+                          ),
+                          Text(
+                            forecast.forecastday![0].astro!.sunrise!,
+                            style: GoogleFonts.inter(
+                              color: Colors.white, // Change the color as needed
+                              fontWeight: FontWeight.normal,
+                              fontSize: 15.sp,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Spacer(), // Adjust the spacing between icon and text
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Sunset',
+                            style: GoogleFonts.inter(
+                              color: Colors.white, // Change the color as needed
+                              fontWeight: FontWeight.normal,
+                              fontSize: 15.sp,
+                            ),
+                          ),
+                          Text(
+                            forecast.forecastday![0].astro!.sunset!,
+                            style: GoogleFonts.inter(
+                              color: Colors.white, // Change the color as needed
+                              fontWeight: FontWeight.normal,
+                              fontSize: 15.sp,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
                 ),
               ),
               Positioned(
@@ -300,14 +356,6 @@ class HomePageState extends State<HomePage>
               )
             ],
           ),
-          // Align(
-          //   alignment: Alignment.bottomCenter,
-          //   child: Image.asset(
-          //     'assets/images/subtract.png', // Replace 'your_image.png' with your image asset path
-          //     width: double.infinity, // Adjust the width as needed
-          //     // height: 100.sp, // Adjust the height as needed
-          //   ),
-          // ),
         ],
       ),
     );
