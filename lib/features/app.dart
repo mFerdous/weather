@@ -1,5 +1,6 @@
 import 'package:oktoast/oktoast.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:sizer/sizer.dart';
 
 import '../core/resources/string_res.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class _AppState extends State<App> {
   }
 
   Future<void> requestPermissions() async {
-   await Permission.location.request();
+    await Permission.location.request();
   }
 
   @override
@@ -43,14 +44,18 @@ class _AppState extends State<App> {
     return BlocBuilder<LocaleCubit, LocaleState>(
       builder: (context, state) {
         return OKToast(
-          child: MaterialApp(
-            debugShowCheckedModeBanner: false,
-            onGenerateRoute: routeConfig.routes,
-            supportedLocales: _supportedLocale,
-            localizationsDelegates: _localizationDelegates,
-            localeResolutionCallback: localeResolution,
-            locale: state.getCurrentLocale(),
-            builder: EasyLoading.init(),
+          child: Sizer(
+            builder: (context, orientation, deviceType) {
+              return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                onGenerateRoute: routeConfig.routes,
+                supportedLocales: _supportedLocale,
+                localizationsDelegates: _localizationDelegates,
+                localeResolutionCallback: localeResolution,
+                locale: state.getCurrentLocale(),
+                builder: EasyLoading.init(),
+              );
+            },
           ),
         );
       },
